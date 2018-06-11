@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 public class Enigma {
 	private String type = "M3";
-	private int pos1;
-	private int offset1;
-	private int pos2;
-	private int offset2;
-	private int pos3;
-	private int offset3;
+	protected int pos1;
+	protected int offset1;
+	protected int pos2;
+	protected int offset2;
+	protected int pos3;
+	protected int offset3;
 	private Rotor R1;
 	private Rotor R2;
 	private Rotor R3;
@@ -15,7 +15,7 @@ public class Enigma {
 	public Enigma (){
 
 	}
-
+	
 	public void setRotors(){
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Enter the first rotor: ");
@@ -59,7 +59,32 @@ public class Enigma {
 		}
 	}
 */
-	public static void main(){
+	
+	public void inc(){
+		if (this.pos1 == 25){
+			this.pos1 = 0;
+		} else {
+			this.pos1 ++;
+		}
+		
+		if (this.pos1 == offset1){
+			if (this.pos2 == 25){
+				this.pos2 = 0;
+			} else {
+				this.pos2 ++;
+			}
+			
+			if (this.pos2 == offset2){
+				if (this.pos3 == 25){
+					this.pos3 = 0;
+				} else {
+					this.pos3 ++;
+				}
+			}
+		}
+	}
+	
+	public void main(){
 		
 	}
 }
