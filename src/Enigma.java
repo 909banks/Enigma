@@ -13,16 +13,32 @@ public class Enigma {
 	private Rotor R3;
 
 	public Enigma (){
+		defaultRotors();
+		defaultPositions();
+	}
+
+	public void defaultRotors(){
+		this.R1 = new Rotor('1', this.type);
+		this.R2 = new Rotor('2', this.type);
+		this.R3 = new Rotor('3', this.type);
+	}
+
+	public void defaultPositions(){
 
 	}
-	
+
 	public void setRotors(){
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Enter the first rotor: ");
 		String temp = reader.next();
 		this.R1 = new Rotor(temp.charAt(0)  , type);
 		System.out.println("Enter the position of the first rotor: ");
-		this.pos1 = reader.nextInt();
+		try{
+			this.pos1 = reader.nextInt();
+		} catch (Exception e) {
+			System.out.println("Input not valid");
+			System.out.println("Default first rotor enabled");
+		}
 		reader.close();
 
 		Scanner reader1 = new Scanner(System.in);
@@ -54,26 +70,26 @@ public class Enigma {
 		reader.close();
 		for (int i=0; temp.lenght(); i++){
 			if (!(temp.charAt(i) == ' ')){
-				
+
 			}
 		}
 	}
 */
-	
+
 	public void inc(){
 		if (this.pos1 == 25){
 			this.pos1 = 0;
 		} else {
 			this.pos1 ++;
 		}
-		
+
 		if (this.pos1 == offset1){
 			if (this.pos2 == 25){
 				this.pos2 = 0;
 			} else {
 				this.pos2 ++;
 			}
-			
+
 			if (this.pos2 == offset2){
 				if (this.pos3 == 25){
 					this.pos3 = 0;
@@ -83,8 +99,8 @@ public class Enigma {
 			}
 		}
 	}
-	
+
 	public void main(){
-		
+
 	}
 }
