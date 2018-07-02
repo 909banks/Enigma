@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import javafx.util.Pair;
 
 public class Enigma {
 	private String type = "M3";
@@ -8,25 +9,58 @@ public class Enigma {
 	protected int offset2;
 	protected int pos3;
 	protected int offset3;
+	
+	private Pair[] plugboard;
+	
+	private char[] reflector;
+	
 	private Rotor R1;
 	private Rotor R2;
 	private Rotor R3;
 
+	
 	public Enigma (){
 		defaultRotors();
 		defaultPositions();
+		setReflector('B');
 	}
-
-	public void defaultRotors(){
-		this.R1 = new Rotor('1', this.type);
-		this.R2 = new Rotor('2', this.type);
-		this.R3 = new Rotor('3', this.type);
+	
+	public Enigma(int position1, int position2, int position3, char reflector, char rotor1, char rotor2, char rotor3, String type, Pair[] plug){
+		//setRotors(position1, position2, position3, rotor1, rotor2, rotor3);
+		//setReflector(reflector);
+		//setPlugboard(plug);
 	}
-
-	public void defaultPositions(){
-
+	
+	public char[] getReflector(){
+		return this.reflector;
 	}
-
+	
+	public void setReflector(char type){
+		if (type == 'B'){
+			this.reflector = new char[] {'Y','R','U','H','Q','S','L','D','P','X','N','G','O','K','M','I','E','B','F','Z','C','W','V','J','A','T'};
+		} else if (type == 'C'){
+			this.reflector = new char[] {'F','V','P','J','I','A','O','Y','E','D','R','Z','X','W','G','C','T','K','U','Q','S','B','N','M','H','L'};
+		}
+	}
+	
+	public int[] getPosition(){
+		int[] Positions = new int[] {this.pos1, this.pos2, this.pos3};
+		return Positions;
+	}
+	
+	public Pair[] getPlugboard(){
+		return this.plugboard;
+	}
+	
+	public void setPlugboard(Pair[] plug){
+		this.plugboard = plug;
+	}
+	
+	public Rotor[] getRotors(){
+		Rotor[] Rotors = new Rotor[] {this.R1, this.R2, this.R3};
+		return Rotors;
+	}
+	
 	public void setRotors(){
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Enter the first rotor: ");
@@ -62,19 +96,23 @@ public class Enigma {
 		this.offset2 = this.pos2;
 		this.offset3 = this.pos3;
 	}
-/*
-	public static char[] plugboard(){
-		Scanner reader = new Scanner(System.in);
-		System.out.println("Enter the letters to be switched: ");
-		char temp = reader.nextString();
-		reader.close();
-		for (int i=0; temp.lenght(); i++){
-			if (!(temp.charAt(i) == ' ')){
-
-			}
-		}
+	
+	public void defaultRotors(){
+		this.R1 = new Rotor('1', this.type);
+		this.R2 = new Rotor('2', this.type);
+		this.R3 = new Rotor('3', this.type);
 	}
-*/
+
+	public void defaultPositions(){
+		this.pos1 = 0;
+		this.offset1 = 0;
+		
+		this.pos2 = 0;
+		this.offset2 = 0;
+		
+		this.pos3 = 0;
+		this.offset3 = 0;
+	}
 
 	public void inc(){
 		if (this.pos1 == 25){
@@ -100,7 +138,10 @@ public class Enigma {
 		}
 	}
 
-	public void main(){
+	public static void main(String[] args){
+	
+		
+		
 
 	}
 }
